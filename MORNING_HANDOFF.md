@@ -1,6 +1,6 @@
 # Dividend Bond — sabah incelemesi
 
-31 Ekim 2026, Europe/Berlin. Ürün ve gerçek testnet tahsilatı çalışıyor. Yarışma videosu kaydedilmedi ve Devfolio başvurusu yapılmadı; teknik çalışma ile submission tamamlanması ayrıdır.
+31 Ekim 2026, **04.00 Europe/Berlin**. Ürün ve gerçek testnet tahsilatı incelemeye hazır. Yarışma videosu kaydedilmedi ve Devfolio başvurusu yapılmadı; teknik çalışma ile submission tamamlanması ayrıdır.
 
 ## Açılış
 
@@ -31,7 +31,7 @@ Seçili senaryo **bond-02**. Issuer 50 tdUSD kilitledi. Tek başlangıç mandate
 - Canlı dört tamper reddi: `tamper-before-claim.json` aktif `claimFor` üzerinde **read-only eth_call**; `tamper-live.json` tüketim sonrası ortak proof verifier üzerinde. Timestamp oynanmadan gerçek stale proof kullanıldı. Revert transaction yayınlanmadı, dolayısıyla bu testler revert gas ödeme kanıtı diye sunulmaz.
 - `npm run acceptance` PASS: over-budget ve yanlış recipient broadcast öncesi reddedildi; aynı process ve yeni process retry sonrasında aUSD/nonce/payment intent/beneficiary bakiyesi aynı. İkinci ücret veya payout yok.
 - Gerçek CUA browser: 1440×900, 768×1024, 390×844. Authorization → pending → confirmed; telefon mandate erişimi; valid proof, malformed JSON, edited proof reddi ve valid response'a dönüş kontrol edildi. Yatay taşma yok. `evidence/browser-layout.json` ve `evidence/screenshots/final-*.jpg`.
-- Public source push ve temiz checkout çalıştırma doğrulaması teslimin son adımında `evidence/delivery.json` içine kaydedilir.
+- Public source doğru ABerkeBora author/committer kimliğiyle push edildi. GitHub'dan temiz checkout'ta `npm ci`, TypeScript, build ve on-chain receipt reconciliation **private wallet/.env/forge output olmadan PASS**. `evidence/clean-checkout.json`, `evidence/delivery.json`.
 
 ## Sınırlar ve güven
 

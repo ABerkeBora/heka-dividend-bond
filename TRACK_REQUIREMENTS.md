@@ -45,7 +45,7 @@ Canlı tamper reddi kanıtları **salt okunur eth_call simülasyonlarıdır**, b
 
 | Madde | Kanıt/teslim | Durum |
 | --- | --- | --- |
-| Public repo | https://github.com/ABerkeBora/heka-dividend-bond ; create doğrulandı, source push son teslim doğrulamasında kaydedilir | PENDING |
+| Public repo | https://github.com/ABerkeBora/heka-dividend-bond ; public visibility, source push ve GitHub'dan temiz checkout doğrulandı; evidence/clean-checkout.json | PASS |
 | Setup/run README | README.md, .env.example, package-lock.json, artifacts/, vendored Solidity libs | PASS |
 | Ayrıntılı Devfolio açıklaması | SUBMISSION_DRAFT.md hazır; Devfolio formuna gönderilmedi | PENDING |
 | En fazla2.5dk video | PRESENTATION.md yalnız outline'dır; kayıt gerekir | PENDING |

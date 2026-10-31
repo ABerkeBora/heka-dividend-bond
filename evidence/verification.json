@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-31T02:57:59.078Z",
+  "typecheck": "PASS",
+  "serverTests": {
+    "passed": 64,
+    "failed": 0
+  },
+  "contractTests": {
+    "passed": 36,
+    "failed": 0,
+    "fuzzRuns": 256
+  },
+  "productionBuild": "PASS",
+  "dependencyAudit": {
+    "vulnerabilities": 0
+  },
+  "browser": {
+    "widths": [
+      1440,
+      768,
+      390
+    ],
+    "horizontalOverflow": false,
+    "evidence": "evidence/browser-layout.json"
+  },
+  "paymentAndPayout": "PASS",
+  "tamper": "PASS",
+  "duplicateAndRestart": "PASS",
+  "rulesRecheck": "2026-10-31 03:56 Europe/Berlin"
+}

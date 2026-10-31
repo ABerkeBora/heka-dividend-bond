@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-31T02:58:19.059Z",
+  "status": "PASS",
+  "nodeVersion": "v24.21.0",
+  "fromPublicRemote": true,
+  "privateWalletAbsent": true,
+  "localEnvAbsent": true,
+  "forgeOutputAbsent": true,
+  "bundledArtifactsUsed": true,
+  "npmCi": "PASS",
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "chainState": "Claimed",
+  "payoutAtoms": "26000000",
+  "readOnlyReceiptReconciliation": "PASS",
+  "noNewPayment": true
+}

@@ -10,13 +10,13 @@ await withLock('workflow',async()=>{
  if(current.agreement&&!['Claimed','Void'].includes(current.agreement.status))throw new Error('Current obligation is still active; cannot hide protected reserve');
  if(current.deployment){
   const archive=`evidence/scenarios/${current.deployment.id}`;fs.mkdirSync(path.join(root,archive),{recursive:true});
-  for(const file of ['deployment.json','request-manifest.json','collection.json','tamper-live.json','tamper-live-timely.json','acceptance.json']){const data=read(`evidence/${file}`);if(data)write(`${archive}/${file}`,data);}
+  for(const file of ['deployment.json','request-manifest.json','collection.json','tamper-live.json','tamper-live-timely.json','tamper-before-claim.json','acceptance.json']){const data=read(`evidence/${file}`);if(data)write(`${archive}/${file}`,data);}
  }
  write('.local/fresh-progress.json',{id,startedAt:now(),previous:current.deployment?.id});
  const next=await deployScenario(id);
  const old=read('.local/journal.json');if(old){write(`.local/journals/${old.mandateId}.json`,old);fs.unlinkSync(path.join(root,'.local/journal.json'));}
  // The old collection remains archived, never masquerades as this new obligation's receipt.
- for(const file of ['collection.json','tamper-live.json','tamper-live-timely.json','acceptance.json']){const f=path.join(root,'evidence',file);if(fs.existsSync(f))fs.unlinkSync(f);}
+ for(const file of ['collection.json','tamper-live.json','tamper-live-timely.json','tamper-before-claim.json','acceptance.json']){const f=path.join(root,'evidence',file);if(fs.existsSync(f))fs.unlinkSync(f);}
  write('.local/fresh-progress.json',{id,status:'ready',finishedAt:now()});
  console.log(JSON.stringify({id,address:next.contractAddress,status:'Funded; ready for a new initial mandate',history:'evidence/scenarios/'},null,2));
 });
