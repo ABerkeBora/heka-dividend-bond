@@ -1,0 +1,30 @@
+{
+  "checkedAtUtc": "2026-10-31T03:48:20.003Z",
+  "status": "PASS",
+  "sourceCommit": "e3a7c57f1790c838c2bb9af3ed4db23d6bff1df7",
+  "fromPublicRemote": true,
+  "node": "v24.21.0",
+  "npmCi": "PASS",
+  "typecheck": "PASS",
+  "productionBuild": "PASS",
+  "privateWalletAbsent": true,
+  "localEnvAbsent": true,
+  "forgeOutputAbsent": true,
+  "v1": {
+    "status": "Claimed",
+    "payoutAtoms": "26000000",
+    "claimTx": "0xf4419dba4bdd1f320074257d4f618bf7120136ab563c251c417b4218edc7acd3"
+  },
+  "v2": {
+    "status": "Claimed",
+    "payoutAtoms": "26000000",
+    "claimTx": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+    "evidenceMode": "recorded successful collection",
+    "currentCollectorKeyAvailable": false,
+    "payerMatchesCollector": true,
+    "claimFromMatchesCollector": true
+  },
+  "stateLeavesPublicEvidenceUnchanged": true,
+  "keylessReceiptReconciliation": "PASS",
+  "newPaymentCreated": false
+}

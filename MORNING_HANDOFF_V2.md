@@ -1,6 +1,6 @@
 # Dividend Bond V2 — sabah incelemesi
 
-31 Ekim 2026, Europe/Berlin. Bağımsız collector ile yeni gerçek testnet tahsilatı tamamlandı. İki akış aynı uygulamada erişilebilir:
+31 Ekim 2026, 04.49 Europe/Berlin. Bağımsız collector ile yeni gerçek testnet tahsilatı tamamlandı. İki akış aynı uygulamada erişilebilir:
 
 - **V1:** [http://localhost:3103/](http://localhost:3103/) — baseline `v1-baseline`, commit `3a177521c49a32b07ccbc1be3985df8a86eab0c8`.
 - **V2:** [http://localhost:3103/next](http://localhost:3103/next) — aynı public repo, `codex/next` branch'i.
@@ -8,11 +8,15 @@
 
 ## Kısa karşılaştırma ve öneri
 
-**V2 önerilir.** V1'de veri ücreti ve claim executor'ı issuer/deployer'dı. V2 aynı finansal statement ve proof koşullarını koruyarak ayrı collector'ın kendi aUSD/gas'ıyla borcu tahsil ettiğini kanıtlıyor. Issuer'ın sonradan işbirliğine gerek kalmadığı vaadi, farklı payer/sender ve değişmeyen issuer nonce'u ile jüriye daha açık.
+V1: [/](http://localhost:3103/) **PASS**, baseline `v1-baseline` / `3a177521c49a32b07ccbc1be3985df8a86eab0c8`. V2: [/next](http://localhost:3103/next) **PASS**, doğrulanmış uygulama commit'i `e3a7c57f1790c838c2bb9af3ed4db23d6bff1df7`.
 
-V1 çalışıyor ve eski 32 public evidence dosyası baseline ile aynı. V2 ayrı API, intent, storage, contract ve token kullanıyor; V1 receipt/escrow tüketilmedi. Her iki sürümde 26 tdUSD test payout var; **V2'ninki ayrı ve yeni transaction**. Harici müşteri pilotu yapılmadı.
+- Veri ücretini ve claim gas’ını ayrı collector ödüyor.
+- Issuer anahtarı okunamayan process, ayrı state ve deployment var.
+- V1 baseline, receipt ve bakiyeleri korunuyor.
 
-**Sunum riski: medium.** Mevcut tamamlanmış tahsilat ve no-charge reconciliation doğrudan gösterilebilir. Taze envelope 300 saniye geçerlidir; kayıtlı proof sabah stale reddi verir. V2 setup şu an tek named senaryo için idempotent; yeni canlı payout için yeni isolated agreement/mandate gerekir. V1'in ayrı fresh helper'ı vardır. V2'yi yalnız yeni olduğu için değil, bağımsızlık kanıtı nedeniyle öneriyoruz.
+**Öneri: V2.** V2, issuer sonradan işbirliği yapmadan tahsilat vaadini gerçek farklı payer/sender ve sabit issuer nonce’u ile kanıtlıyor. Mevcut receipt ve ret kanıtları hazır; yeni canlı payout ayrı setup gerektirir.
+
+**Sunum riski: medium.** Node24/RPC gerekir; kayıtlı envelope300s sonunda stale olur. Video kaydı ve Devfolio gönderimi açık. Gerçek yeni testnet payout26tdUSD; harici müşteri pilotu yapılmadı.
 
 ## Ne değişti, ne kanıtlandı?
 
@@ -49,3 +53,5 @@ API caps uygulama seviyesinde ve izole collector wallet ile sınırlı; on-chain
 Aynı EODHD historical recipe kullanılır: AAPL.US ex-date 11 Ağustos 2025, unadjusted dividend 0,26 USD, ödeme 14 Ağustos. Kurulumdaki public ham-event discovery yalnız terms/cardinality kaynağıdır; V1 ödeme receipt'i V2 satın alma kanıtı diye kullanılmadı. Yeni V2 exact request gerçekten collector tarafından satın alındı. İmza broker ownership/backing veya upstream doğruluğu ispatı değildir.
 
 **PENDING:** 150 saniyelik video kaydı (10–15 dk) ve kullanıcının Devfolio gönderimi (5–10 dk). `PRESENTATION_V2.md` kayıt akışı, `SUBMISSION_DRAFT.md` önceki temel metin ve bu handoff yeni farkları verir. API3/general rules **04.45 Europe/Berlin** yeniden okundu; maddi değişiklik yok. Deadline 31 Ekim 2026 **15.00 Europe/Berlin**, takım başına tek submission. Hosting/mainnet harcaması/yarışma gönderimi yapılmadı.
+
+Son public teslim doğrulaması: `codex/next` ABerkeBora author/committer ile push edildi; `v1-baseline` tag değişmedi. GitHub’dan temiz checkout’ta npm ci/check/build, V1/V2 keyless state ve V2 no-charge receipt reconciliation PASS. `evidence/v2/clean-checkout.json`. Kısa makine okunur karşılaştırma `REVIEW_SUMMARY.json`.

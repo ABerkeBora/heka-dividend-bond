@@ -13,7 +13,7 @@ Kaynaklar: [API3 kuralları](https://hackathon.tum-blockchain.com/prizes#api3), 
 | Edited/stale/wrong-request/wrong-signer | Yeni contract'ta actual proof-policy retleri | Active claimFor ve consumed proof-policy eth_call; 36 contract testi | PASS |
 | Judge response submission | V2 API/UI read-only verifier ve belgeli script | evidence/v2/browser-walkthrough.json; /next raw verifier | PASS |
 | Contract/network/source trust açıklaması | README + MORNING_HANDOFF_V2 | README_V2.md + MORNING_HANDOFF_V2.md + SECURITY_V2.md | PASS |
-| Public repo/setup README | Aynı repo, v1-baseline tag ve codex/next branch | v1-baseline tag push edildi; codex/next source push ve clean checkout son teslimde doğrulanır | PENDING |
+| Public repo/setup README | Aynı repo, v1-baseline tag ve codex/next branch | v1-baseline + codex/next remote doğrulandı; evidence/v2/clean-checkout.json | PASS |
 | Video≤150s + Devfolio açıklaması | Outline/draft hazırlanır, gerçek video/submission kullanıcı işi | Recording/submission açık kalır | PENDING |
 
 Kullanıcının ek kabul şartları: issuer setup ile collector runtime süreçleri ve key erişimi ayrılır; V1 `/` ve bütün geçmişi korunur; V2 `/next`, ayrı API/state/intent/deployment/asset/evidence. Collector kendi aUSD ve gas'ıyla gerçek ödeme/claim yapar; claim penceresinde issuer nonce'u değişmez. API caps uygulama seviyesinde, L2 gas bound ve L1 fee tahmini dürüstçe belirtilir. Yeni source/chain/LLM authority eklenmez.

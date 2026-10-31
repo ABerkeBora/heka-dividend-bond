@@ -1,0 +1,37 @@
+{
+  "project": "Dividend Bond",
+  "checkedAtUtc": "2026-10-31T03:49:03.147Z",
+  "v1": {
+    "url": "http://localhost:3103/",
+    "status": "PASS",
+    "baselineCommit": "3a177521c49a32b07ccbc1be3985df8a86eab0c8"
+  },
+  "v2": {
+    "url": "http://localhost:3103/next",
+    "status": "PASS",
+    "commit": "e3a7c57f1790c838c2bb9af3ed4db23d6bff1df7"
+  },
+  "changes": [
+    "Veri ücretini ve claim gas’ını ayrı collector ödüyor.",
+    "Issuer anahtarı okunamayan process, ayrı state ve deployment var.",
+    "V1 baseline, receipt ve bakiyeleri korunuyor."
+  ],
+  "verified": [
+    "evidence/v2/acceptance.json",
+    "evidence/v2/collection-runtime.json",
+    "evidence/v2/tamper-before-claim.json",
+    "evidence/v2/v1-regression.json",
+    "evidence/v2/verification.json",
+    "evidence/v2/clean-checkout.json",
+    "claim:0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4"
+  ],
+  "pending": [
+    "150 saniyelik video kaydı",
+    "Kullanıcının Devfolio gönderimi"
+  ],
+  "recommendation": {
+    "version": "V2",
+    "reason": "V2, issuer sonradan işbirliği yapmadan tahsilat vaadini gerçek farklı payer/sender ve sabit issuer nonce’u ile kanıtlıyor. Mevcut receipt ve ret kanıtları hazır; yeni canlı payout ayrı setup gerektirir.",
+    "demoRisk": "medium"
+  }
+}
