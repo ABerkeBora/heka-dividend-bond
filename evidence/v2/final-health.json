@@ -1,0 +1,21 @@
+{
+  "checkedAtUtc": "2026-10-31T03:49:57.159Z",
+  "status": "PASS",
+  "v1": {
+    "url": "http://localhost:3103/",
+    "contract": "0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b",
+    "payoutAtoms": "26000000",
+    "claimTx": "0xf4419dba4bdd1f320074257d4f618bf7120136ab563c251c417b4218edc7acd3"
+  },
+  "v2": {
+    "url": "http://localhost:3103/next",
+    "contract": "0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+    "payoutAtoms": "26000000",
+    "claimTx": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+    "issuerNonceBefore": 15,
+    "issuerNonceAfter": 15,
+    "payerMatchesCollector": true,
+    "claimFromMatchesCollector": true
+  },
+  "serverLeftRunning": true
+}
