@@ -1,0 +1,36 @@
+{
+  "source": "EODHD",
+  "sourceUrl": "https://airnode-eodhd.fly.dev/",
+  "request": {
+    "operation": "dividendHistory",
+    "parameters": {
+      "ticker": "AAPL.US",
+      "from": "2025-08-11",
+      "to": "2025-08-11"
+    },
+    "responseProjection": {
+      "eventDate": "/0/date",
+      "recordDate": "/0/recordDate",
+      "paymentDate": "/0/paymentDate",
+      "declaredDividend": "/0/unadjustedValue",
+      "currency": "/0/currency"
+    }
+  },
+  "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+  "signer": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+  "semantics": "from/to filters ex-dividend date; unadjustedValue is declared dividend per unit in USD; historical event has no upstream update timestamp",
+  "terms": {
+    "asset": "0xd6a836bfc7de8ee080156b226b7c5dca92233718",
+    "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+    "airnode": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+    "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+    "ticker": "AAPL.US",
+    "eventDate": "1754870400",
+    "paymentDate": "1755129600",
+    "quantityE18": "100000000000000000000",
+    "payoutCap": "50000000",
+    "earliestSettlement": 1793414541,
+    "claimDeadline": 1793500941,
+    "voidGrace": 3600
+  }
+}

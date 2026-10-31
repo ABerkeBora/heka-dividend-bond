@@ -1,0 +1,20 @@
+{
+  "purpose": "Verify exact historical query cardinality and raw event fields before funding a new obligation",
+  "request": {
+    "operation": "dividendHistory",
+    "parameters": {
+      "ticker": "AAPL.US",
+      "from": "2025-08-11",
+      "to": "2025-08-11"
+    }
+  },
+  "requestHash": "0xc8621f8b51ab63d74bd9aa8bd79c64c6a184faee7fa0c9651412f453b4973b11",
+  "signer": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+  "productRequestHashUnchanged": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+  "maxActions": 1,
+  "perCallCapAtoms": "10000",
+  "totalCapAtoms": "10000",
+  "feeAsset": "0xbeA34973e5f67F18F656A2C6070C64326C791808",
+  "payee": "0x1505FD562AC2Fb4307B85BC6c672FfeafB4d57A7",
+  "network": "eip155:84532"
+}

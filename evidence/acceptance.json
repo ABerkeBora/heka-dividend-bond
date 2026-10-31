@@ -1,0 +1,180 @@
+{
+  "checkedAt": "2026-10-31T02:52:50.327Z",
+  "mandateId": "bond-02-0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b",
+  "initialDelegatedAction": {
+    "paymentTx": "0x0baa356f7a5ed239fdd6dc220c191f28f2c501111d362d5168c328c248e1bc14",
+    "claimTx": "0xf4419dba4bdd1f320074257d4f618bf7120136ab563c251c417b4218edc7acd3",
+    "payoutAtoms": "26000000"
+  },
+  "blocked": [
+    {
+      "name": "over-budget",
+      "validatorDecision": "REJECT",
+      "message": "Data budget exceeded",
+      "transactionSubmitted": false
+    },
+    {
+      "name": "wrong-recipient",
+      "validatorDecision": "REJECT",
+      "message": "Unapproved payment destination, asset, network or scheme",
+      "transactionSubmitted": false
+    }
+  ],
+  "before": {
+    "chain": {
+      "deployment": {
+        "id": "bond-02",
+        "createdAt": 1793415079,
+        "discoveryRequestHash": "0xc8621f8b51ab63d74bd9aa8bd79c64c6a184faee7fa0c9651412f453b4973b11",
+        "discoveryCheckedBeforeDeployment": true,
+        "tokenAddress": "0x1c94037d2c84879ae78e66d29a9d5e03856440ae",
+        "tokenTx": "0x282af597e4cdad0ce34eb32ed7f7c8d8b0da5d1af9b2e1e8e420a98866624614",
+        "terms": {
+          "asset": "0x1c94037d2c84879ae78e66d29a9d5e03856440ae",
+          "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+          "airnode": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+          "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+          "ticker": "AAPL.US",
+          "eventDate": "1754870400",
+          "paymentDate": "1755129600",
+          "quantityE18": "100000000000000000000",
+          "payoutCap": "50000000",
+          "earliestSettlement": 1793415079,
+          "claimDeadline": 1793501479,
+          "voidGrace": 3600
+        },
+        "contractAddress": "0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b",
+        "txHash": "0xbfd70e31ba7dac293cd5ecc38b1a1877beca7d81f04ce7650df532ffcca3015a",
+        "fundingTx": "0x377c4ad760b40272256d9e3ecab1e33d2ccf61d790a26dcdadb1dc13796df483",
+        "approvalTx": "0xe25928106e462e480c24ea3f7656d9605cf2c3ac95058ef41833ac4e22544590",
+        "network": {
+          "chainId": 84532,
+          "name": "Base Sepolia",
+          "explorer": "https://sepolia.basescan.org"
+        }
+      },
+      "agreement": {
+        "id": "bond-02",
+        "ticker": "AAPL.US",
+        "eventDate": "2025-08-11",
+        "paymentDate": "2025-08-14",
+        "recordDate": "2025-08-11",
+        "quantityAtoms": "100",
+        "quantityDecimals": 0,
+        "payoutCapAtoms": "50000000",
+        "payoutDecimals": 6,
+        "payoutSymbol": "tdUSD",
+        "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+        "issuer": "0x1e3bD1fD6e463bc410E99298d20274dbE252d6E0",
+        "status": "Claimed",
+        "claimed": true,
+        "payoutAtoms": "26000000",
+        "declaredDividendAtoms": "260000",
+        "previewPayoutAtoms": "26000000",
+        "reserveAtoms": "0",
+        "claimDeadline": 1793501479,
+        "voidGrace": 3600
+      },
+      "balances": {
+        "beneficiaryAtoms": "26000000",
+        "reserveAtoms": "0"
+      }
+    },
+    "aUSDAtoms": "980000",
+    "payerNonce": 10,
+    "paymentIntents": [
+      "bond-01-0x3e79199f4c26d248f4db889d29424bbf3d1d66fd-data-01.json",
+      "bond-02-0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b-data-01.json",
+      "eodhd-cardinality-aapl-20250811-01.json",
+      "eodhd-preflight-01.json"
+    ]
+  },
+  "after": {
+    "chain": {
+      "deployment": {
+        "id": "bond-02",
+        "createdAt": 1793415079,
+        "discoveryRequestHash": "0xc8621f8b51ab63d74bd9aa8bd79c64c6a184faee7fa0c9651412f453b4973b11",
+        "discoveryCheckedBeforeDeployment": true,
+        "tokenAddress": "0x1c94037d2c84879ae78e66d29a9d5e03856440ae",
+        "tokenTx": "0x282af597e4cdad0ce34eb32ed7f7c8d8b0da5d1af9b2e1e8e420a98866624614",
+        "terms": {
+          "asset": "0x1c94037d2c84879ae78e66d29a9d5e03856440ae",
+          "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+          "airnode": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+          "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+          "ticker": "AAPL.US",
+          "eventDate": "1754870400",
+          "paymentDate": "1755129600",
+          "quantityE18": "100000000000000000000",
+          "payoutCap": "50000000",
+          "earliestSettlement": 1793415079,
+          "claimDeadline": 1793501479,
+          "voidGrace": 3600
+        },
+        "contractAddress": "0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b",
+        "txHash": "0xbfd70e31ba7dac293cd5ecc38b1a1877beca7d81f04ce7650df532ffcca3015a",
+        "fundingTx": "0x377c4ad760b40272256d9e3ecab1e33d2ccf61d790a26dcdadb1dc13796df483",
+        "approvalTx": "0xe25928106e462e480c24ea3f7656d9605cf2c3ac95058ef41833ac4e22544590",
+        "network": {
+          "chainId": 84532,
+          "name": "Base Sepolia",
+          "explorer": "https://sepolia.basescan.org"
+        }
+      },
+      "agreement": {
+        "id": "bond-02",
+        "ticker": "AAPL.US",
+        "eventDate": "2025-08-11",
+        "paymentDate": "2025-08-14",
+        "recordDate": "2025-08-11",
+        "quantityAtoms": "100",
+        "quantityDecimals": 0,
+        "payoutCapAtoms": "50000000",
+        "payoutDecimals": 6,
+        "payoutSymbol": "tdUSD",
+        "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+        "issuer": "0x1e3bD1fD6e463bc410E99298d20274dbE252d6E0",
+        "status": "Claimed",
+        "claimed": true,
+        "payoutAtoms": "26000000",
+        "declaredDividendAtoms": "260000",
+        "previewPayoutAtoms": "26000000",
+        "reserveAtoms": "0",
+        "claimDeadline": 1793501479,
+        "voidGrace": 3600
+      },
+      "balances": {
+        "beneficiaryAtoms": "26000000",
+        "reserveAtoms": "0"
+      }
+    },
+    "aUSDAtoms": "980000",
+    "payerNonce": 10,
+    "paymentIntents": [
+      "bond-01-0x3e79199f4c26d248f4db889d29424bbf3d1d66fd-data-01.json",
+      "bond-02-0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b-data-01.json",
+      "eodhd-cardinality-aapl-20250811-01.json",
+      "eodhd-preflight-01.json"
+    ]
+  },
+  "sameProcessRetry": "PASS",
+  "freshProcessRestart": {
+    "status": "PASS",
+    "output": {
+      "status": "Collected",
+      "mandateId": "bond-02-0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b",
+      "paymentTx": "0x0baa356f7a5ed239fdd6dc220c191f28f2c501111d362d5168c328c248e1bc14",
+      "claimTx": "0xf4419dba4bdd1f320074257d4f618bf7120136ab563c251c417b4218edc7acd3",
+      "receivedAtoms": "26000000",
+      "reconciliation": "Already claimed on-chain; skipped data purchase and transaction"
+    }
+  },
+  "duplicateClaim": {
+    "validatorDecision": "REJECT",
+    "message": "The contract function \"claimFor\" reverted.",
+    "method": "claimFor eth_call; no broadcast"
+  },
+  "noSecondChargeOrPayout": true,
+  "status": "PASS"
+}

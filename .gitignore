@@ -1,0 +1,13 @@
+node_modules/
+.vendor/
+.env
+.env.*
+!.env.example
+.local/
+out/
+cache/
+dist/
+*.log
+.DS_Store
+.taste-skill/
+BUILD_STATUS.md

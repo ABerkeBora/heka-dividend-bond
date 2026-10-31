@@ -1,0 +1,15 @@
+{
+  "operation": "dividendHistory",
+  "parameters": {
+    "ticker": "AAPL.US",
+    "from": "2025-08-11",
+    "to": "2025-08-11"
+  },
+  "responseProjection": {
+    "eventDate": "/0/date",
+    "recordDate": "/0/recordDate",
+    "paymentDate": "/0/paymentDate",
+    "declaredDividend": "/0/unadjustedValue",
+    "currency": "/0/currency"
+  }
+}

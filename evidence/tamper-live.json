@@ -1,0 +1,92 @@
+{
+  "checkedAt": "2026-10-31T02:52:52.779Z",
+  "network": {
+    "chainId": 84532,
+    "name": "Base Sepolia"
+  },
+  "contractAddress": "0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b",
+  "method": "validateResponse via read-only eth_call simulation",
+  "broadcastTransactions": false,
+  "blockNumber": "52466514",
+  "blockTimestamp": "1793415171",
+  "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+  "expectedSigner": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+  "explanation": "The obligation was already consumed or inactive; proof-policy checks use validateResponse so InvalidState does not mask tamper rejection. No transaction was broadcast.",
+  "validCase": {
+    "status": "PASS",
+    "method": "validateResponse eth_call",
+    "dividendE18": "260000000000000000",
+    "payoutAtoms": "26000000",
+    "proofTimestamp": "1793415151"
+  },
+  "earlierTimelyValidation": null,
+  "cases": [
+    {
+      "name": "edited-value",
+      "status": "PASS",
+      "expected": "NotSignedByAirnode",
+      "actual": {
+        "errorName": "NotSignedByAirnode",
+        "args": [
+          "0x3029A8C21391dBEed7eBA5845a8f5eD4DF9366D0"
+        ],
+        "message": "The contract function \"validateResponse\" reverted."
+      },
+      "proofTimestamp": "1793415151"
+    },
+    {
+      "name": "real-stale-response",
+      "status": "PASS",
+      "expected": "ResponseTooOld",
+      "actual": {
+        "errorName": "ResponseTooOld",
+        "args": [
+          "1793414484"
+        ],
+        "message": "The contract function \"validateResponse\" reverted."
+      },
+      "proofTimestamp": "1793414484"
+    },
+    {
+      "name": "different-real-request",
+      "status": "PASS",
+      "expected": "NotSignedByAirnode",
+      "actual": {
+        "errorName": "NotSignedByAirnode",
+        "args": [
+          "0x964793d49B0E43C1C715264f1D8876A9e429AF75"
+        ],
+        "message": "The contract function \"validateResponse\" reverted."
+      },
+      "proofTimestamp": "1793414508"
+    },
+    {
+      "name": "local-wrong-signer",
+      "status": "PASS",
+      "expected": "NotSignedByAirnode",
+      "actual": {
+        "errorName": "NotSignedByAirnode",
+        "args": [
+          "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf"
+        ],
+        "message": "The contract function \"validateResponse\" reverted."
+      },
+      "proofTimestamp": "1793415171"
+    }
+  ],
+  "before": {
+    "state": 2,
+    "claimedAmount": "26000000",
+    "reserveAtoms": "0",
+    "beneficiaryAtoms": "26000000"
+  },
+  "after": {
+    "state": 2,
+    "claimedAmount": "26000000",
+    "reserveAtoms": "0",
+    "beneficiaryAtoms": "26000000"
+  },
+  "protectedStateUnchanged": true,
+  "status": "PASS",
+  "caveat": "Static calls cannot mutate chain state; before/after balances and consumption flag were also read from the real deployment."
+}

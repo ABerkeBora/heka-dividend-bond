@@ -1,0 +1,31 @@
+{
+  "id": "bond-02",
+  "createdAt": 1793415079,
+  "discoveryRequestHash": "0xc8621f8b51ab63d74bd9aa8bd79c64c6a184faee7fa0c9651412f453b4973b11",
+  "discoveryCheckedBeforeDeployment": true,
+  "tokenAddress": "0x1c94037d2c84879ae78e66d29a9d5e03856440ae",
+  "tokenTx": "0x282af597e4cdad0ce34eb32ed7f7c8d8b0da5d1af9b2e1e8e420a98866624614",
+  "terms": {
+    "asset": "0x1c94037d2c84879ae78e66d29a9d5e03856440ae",
+    "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+    "airnode": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+    "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+    "ticker": "AAPL.US",
+    "eventDate": "1754870400",
+    "paymentDate": "1755129600",
+    "quantityE18": "100000000000000000000",
+    "payoutCap": "50000000",
+    "earliestSettlement": 1793415079,
+    "claimDeadline": 1793501479,
+    "voidGrace": 3600
+  },
+  "contractAddress": "0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b",
+  "txHash": "0xbfd70e31ba7dac293cd5ecc38b1a1877beca7d81f04ce7650df532ffcca3015a",
+  "fundingTx": "0x377c4ad760b40272256d9e3ecab1e33d2ccf61d790a26dcdadb1dc13796df483",
+  "approvalTx": "0xe25928106e462e480c24ea3f7656d9605cf2c3ac95058ef41833ac4e22544590",
+  "network": {
+    "chainId": 84532,
+    "name": "Base Sepolia",
+    "explorer": "https://sepolia.basescan.org"
+  }
+}

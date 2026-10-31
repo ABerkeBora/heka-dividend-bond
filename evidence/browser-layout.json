@@ -1,0 +1,122 @@
+[
+  {
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "documentWidth": 1440,
+    "h1Size": "30px",
+    "horizontalOverflow": false,
+    "mainFigure": "26.00 tdUSD",
+    "panels": [
+      {
+        "height": 603.890625,
+        "left": 160,
+        "name": "obligation-heading",
+        "right": 880,
+        "width": 720
+      },
+      {
+        "height": 603.890625,
+        "left": 896,
+        "name": "mandate-heading",
+        "right": 1280,
+        "width": 384
+      },
+      {
+        "height": 412.9921875,
+        "left": 160,
+        "name": "ledger-heading",
+        "right": 880,
+        "width": 720
+      },
+      {
+        "height": 431.3984375,
+        "left": 896,
+        "name": "budget-heading",
+        "right": 1280,
+        "width": 384
+      }
+    ],
+    "primaryAction": "Run reconciliation",
+    "smallText": [],
+    "width": 1440
+  },
+  {
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "documentWidth": 768,
+    "h1Size": "26px",
+    "horizontalOverflow": false,
+    "mainFigure": "26.00 tdUSD",
+    "panels": [
+      {
+        "height": 591.59375,
+        "left": 20,
+        "name": "obligation-heading",
+        "right": 748,
+        "width": 728
+      },
+      {
+        "height": 527.3984375,
+        "left": 20,
+        "name": "mandate-heading",
+        "right": 748,
+        "width": 728
+      },
+      {
+        "height": 412.9921875,
+        "left": 20,
+        "name": "ledger-heading",
+        "right": 748,
+        "width": 728
+      },
+      {
+        "height": 413.3984375,
+        "left": 20,
+        "name": "budget-heading",
+        "right": 748,
+        "width": 728
+      }
+    ],
+    "primaryAction": "Run reconciliation",
+    "smallText": [],
+    "width": 768
+  },
+  {
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "documentWidth": 390,
+    "h1Size": "26px",
+    "horizontalOverflow": false,
+    "mainFigure": "26.00 tdUSD",
+    "panels": [
+      {
+        "height": 651.59375,
+        "left": 16,
+        "name": "obligation-heading",
+        "right": 374,
+        "width": 358
+      },
+      {
+        "height": 551.3984375,
+        "left": 16,
+        "name": "mandate-heading",
+        "right": 374,
+        "width": 358
+      },
+      {
+        "height": 465.1875,
+        "left": 16,
+        "name": "ledger-heading",
+        "right": 374,
+        "width": 358
+      },
+      {
+        "height": 449.3984375,
+        "left": 16,
+        "name": "budget-heading",
+        "right": 374,
+        "width": 358
+      }
+    ],
+    "primaryAction": "Run reconciliation",
+    "smallText": [],
+    "width": 390
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "airnode": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+  "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+  "timestamp": "1793414484",
+  "data": "{\"currency\":\"USD\",\"declaredDividend\":0.26,\"eventDate\":\"2025-08-11\",\"paymentDate\":\"2025-08-14\",\"recordDate\":\"2025-08-11\"}",
+  "signature": "0xb6360bbbf2565f86894fe747d4472869b9327b6d6bffe0990eb5b86ca27f428c326b15ca8e6891ef42744cc566e1ece82311b961b8fd01e19e1cbc480e219bfc1b"
+}

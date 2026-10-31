@@ -1,0 +1,4 @@
+lib/** linguist-vendored
+contracts/vendor/** linguist-vendored
+server/vendor/** linguist-vendored
+artifacts/** linguist-generated

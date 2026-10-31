@@ -1,0 +1,41 @@
+{
+  "name": "dividend-bond",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server/index.ts",
+    "start": "NODE_ENV=production tsx server/index.ts",
+    "build": "vite build --config vite.config.ts",
+    "check": "tsc --noEmit",
+    "test": "tsx --test server/*.test.ts",
+    "contracts:test": "forge test -vv",
+    "preflight": "tsx scripts/preflight.ts",
+    "deploy": "tsx scripts/deploy.ts",
+    "fresh": "tsx scripts/fresh.ts",
+    "discover-event": "tsx scripts/discover-event.ts",
+    "collect": "tsx scripts/collect.ts",
+    "recover": "tsx scripts/recover.ts",
+    "tamper:live": "tsx scripts/tamper-live.ts",
+    "acceptance": "tsx scripts/acceptance.ts",
+    "submit-response": "tsx scripts/submit-response.ts"
+  },
+  "dependencies": {
+    "@x402/core": "2.29.0",
+    "@x402/evm": "2.29.0",
+    "@x402/fetch": "2.29.0",
+    "dotenv": "17.2.3",
+    "express": "5.1.0",
+    "viem": "2.57.3"
+  },
+  "devDependencies": {
+    "@types/express": "5.0.5",
+    "@types/node": "24.19.1",
+    "tsx": "4.20.6",
+    "typescript": "6.0.3",
+    "vite": "7.3.7"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}
