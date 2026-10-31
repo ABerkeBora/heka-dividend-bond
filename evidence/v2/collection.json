@@ -1,0 +1,157 @@
+{
+  "mandateId": "independent-01-0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+  "status": "Collected",
+  "createdAt": 1793417747,
+  "expiresAt": 1793419547,
+  "dataSpentAtoms": "5000",
+  "gasSpentWei": "1690122001103",
+  "actions": 1,
+  "steps": [
+    {
+      "name": "Data purchase",
+      "status": "confirmed",
+      "detail": "0.005 aUSD paid to EODHD Airnode; payment receipt confirmed",
+      "at": 1793417750,
+      "txHash": "0x84a9bd85caec8f0d30974545c56c4633ec1ffe80deef8e34f8928829dabce7b3"
+    },
+    {
+      "name": "Verification",
+      "status": "confirmed",
+      "detail": "Signature, event, USD amount and timing accepted by the deployed contract",
+      "at": 1793417750
+    },
+    {
+      "name": "Claim sent",
+      "status": "confirmed",
+      "detail": "Receipt recovered from persisted transaction hash",
+      "at": 1793418277,
+      "txHash": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4"
+    },
+    {
+      "name": "Funds received",
+      "status": "confirmed",
+      "detail": "26 tdUSD confirmed by the claim event",
+      "at": 1793418277,
+      "txHash": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4"
+    }
+  ],
+  "mandate": {
+    "dataBudgetAtoms": "50000",
+    "perCallCapAtoms": "10000",
+    "gasBudgetWei": "200000000000000",
+    "maxActions": 2,
+    "maxClaims": 1,
+    "expirySeconds": 1800,
+    "payee": "0x1505FD562AC2Fb4307B85BC6c672FfeafB4d57A7",
+    "asset": "0xbeA34973e5f67F18F656A2C6070C64326C791808",
+    "sourceUrl": "https://airnode-eodhd.fly.dev/",
+    "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+    "signer": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+    "network": "eip155:84532",
+    "enforcement": "Application guards and isolated funded wallet; payout recipient, proof and one-claim rule enforced on-chain",
+    "mandateId": "independent-01-0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+    "scope": "v2",
+    "executorRole": "collector",
+    "agreementId": "independent-01",
+    "contractAddress": "0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+    "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+    "payer": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+    "createdAt": 1793417747,
+    "expiresAt": 1793419547,
+    "actions": 0,
+    "reservedAtoms": "0"
+  },
+  "paymentTx": "0x84a9bd85caec8f0d30974545c56c4633ec1ffe80deef8e34f8928829dabce7b3",
+  "response": {
+    "airnode": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+    "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+    "timestamp": "1793417750",
+    "data": "{\"currency\":\"USD\",\"declaredDividend\":0.26,\"eventDate\":\"2025-08-11\",\"paymentDate\":\"2025-08-14\",\"recordDate\":\"2025-08-11\"}",
+    "signature": "0x5134edf08d725db618cc0b40049ebd5b40be44019321fb20f0c9b336cd22236a5800de7fd5ea088295f85fbbdaf78b686844cf54a7dd474c75395b1d624b43ab1c"
+  },
+  "payoutAtoms": "26000000",
+  "beneficiaryBeforeAtoms": "0",
+  "claimTx": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+  "claimReceipt": {
+    "transactionHash": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+    "status": "success",
+    "contractAddress": null,
+    "blockNumber": "52479422",
+    "gasUsed": "281687",
+    "effectiveGasPrice": "6000000",
+    "l1Fee": "1103",
+    "logs": [
+      {
+        "address": "0xc61371f8c5508cbd9862b76173eac5e6ef479478",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x000000000000000000000000020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+          "0x0000000000000000000000004d299e20b77a197950ce862b311ab34b4237fbec"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000000000000018cba80",
+        "blockHash": "0x934f76bad799e4cba702412e67d67a57d74235b753674788f984d90ca29de1ae",
+        "blockNumber": "52479422",
+        "blockTimestamp": "1793417753",
+        "transactionHash": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+        "transactionIndex": 3,
+        "logIndex": 0,
+        "removed": false,
+        "blockTimestampMs": "0x1a190073270"
+      },
+      {
+        "address": "0xc61371f8c5508cbd9862b76173eac5e6ef479478",
+        "topics": [
+          "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+          "0x000000000000000000000000020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+          "0x0000000000000000000000001e3bd1fd6e463bc410e99298d20274dbe252d6e0"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000000000000016e3600",
+        "blockHash": "0x934f76bad799e4cba702412e67d67a57d74235b753674788f984d90ca29de1ae",
+        "blockNumber": "52479422",
+        "blockTimestamp": "1793417753",
+        "transactionHash": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+        "transactionIndex": 3,
+        "logIndex": 1,
+        "removed": false,
+        "blockTimestampMs": "0x1a190073270"
+      },
+      {
+        "address": "0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+        "topics": [
+          "0x6cd19031ed2604a27a336b69776ae5f0d6cc1e9cee21171ebccc612b9be64050",
+          "0x0000000000000000000000001e3bd1fd6e463bc410e99298d20274dbe252d6e0"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000000000000016e3600",
+        "blockHash": "0x934f76bad799e4cba702412e67d67a57d74235b753674788f984d90ca29de1ae",
+        "blockNumber": "52479422",
+        "blockTimestamp": "1793417753",
+        "transactionHash": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+        "transactionIndex": 3,
+        "logIndex": 2,
+        "removed": false,
+        "blockTimestampMs": "0x1a190073270"
+      },
+      {
+        "address": "0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+        "topics": [
+          "0xd795915374024be1f03204e052bd584b33bb85c9128ede9c54adbe0bbdc22095",
+          "0x0000000000000000000000004d299e20b77a197950ce862b311ab34b4237fbec",
+          "0x0000000000000000000000004d299e20b77a197950ce862b311ab34b4237fbec"
+        ],
+        "data": "0x00000000000000000000000000000000000000000000000000000000018cba80000000000000000000000000000000000000000000000000039bb49f599a0000000000000000000000000000000000000000000000000000000000006ae56216",
+        "blockHash": "0x934f76bad799e4cba702412e67d67a57d74235b753674788f984d90ca29de1ae",
+        "blockNumber": "52479422",
+        "blockTimestamp": "1793417753",
+        "transactionHash": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+        "transactionIndex": 3,
+        "logIndex": 3,
+        "removed": false,
+        "blockTimestampMs": "0x1a190073270"
+      }
+    ]
+  },
+  "beneficiaryAfterAtoms": "26000000",
+  "receivedAtoms": "26000000",
+  "reconciledAt": 1793418277,
+  "reconciliation": "Already claimed on-chain; skipped data purchase and transaction"
+}

@@ -58,6 +58,23 @@ small, .small { font-size: 12px; line-height: 1.5; }
 .brand svg { width: 25px; height: 30px; flex: none; }
 .network { font-size: 12px; color: var(--muted); }
 .network::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--faint); margin: 0 7px 1px 0; }
+.route-nav { display: flex; align-items: center; gap: 22px; padding-top: 2px; font-size: 12px; }
+.route-nav a { color: var(--muted); text-decoration: none; min-height: 28px; display: inline-flex; align-items: center; }
+.route-nav a[aria-current="page"] { color: var(--text); text-decoration: underline; text-underline-offset: 5px; }
+.independence-overview { margin-bottom: var(--gap); padding: 16px 24px; }
+.independence-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.independence-heading h2 { font-size: 14px; }
+.role-columns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 15px; }
+.role-columns > div { min-width: 0; }
+.role-columns .address { margin-top: 5px; font-size: 13px; }
+.role-caption { color: var(--muted); font-size: 12px; margin-top: 5px; }
+.independence-detail { margin-top: 16px; }
+.independence-checks { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; margin: 0; }
+.independence-checks > div { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.independence-checks dt { font-size: 12px; color: var(--muted); }
+.independence-checks dd { font-size: 12px; margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.check-result.positive { color: var(--positive); }
+.check-result.negative { color: var(--negative); }
 .titlebar { padding: 30px 0 24px; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
 .titlebar p { color: var(--muted); margin-top: 6px; }
 .freshness { display: flex; flex-direction: column; align-items: flex-end; font-size: 12px; color: var(--muted); gap: 3px; flex-shrink: 0; }
@@ -164,6 +181,34 @@ textarea { display: block; width: 100%; min-height: 164px; resize: vertical; pad
 .footer p { max-width: 75ch; }
 .footer a { white-space: nowrap; }
 .loading-value { background: var(--active); color: transparent; display: inline-block; min-width: 44px; border-radius: 3px; }
+/* V2 adds role evidence above the statement. Compact its desktop rhythm so the
+   ledger and actual costs remain visible in the first 900px without shrinking type. */
+@media (min-width: 901px) {
+  .independent-flow .titlebar { padding-top: 20px; padding-bottom: 16px; }
+  .independent-flow .independence-overview { padding-top: 10px; padding-bottom: 10px; margin-bottom: 12px; }
+  .independent-flow .role-columns { margin-top: 8px; gap: 16px; }
+  .independent-flow .role-columns > div { display: grid; grid-template-columns: auto 1fr; align-items: baseline; column-gap: 10px; }
+  .independent-flow .role-columns .address { margin-top: 0; text-align: right; }
+  .independent-flow .role-caption { grid-column: 1 / -1; margin-top: 3px; }
+  .independent-flow .statement-head { padding-top: 16px; }
+  .independent-flow .amount-row { margin-top: 14px; margin-bottom: 10px; }
+  .independent-flow .rate-note { margin-bottom: 10px; }
+  .independent-flow .event-dates { padding-top: 10px; padding-bottom: 10px; }
+  .independent-flow .settlement-terms { padding-top: 10px; padding-bottom: 10px; }
+  .independent-flow .reserve-distribution { padding-top: 10px; padding-bottom: 10px; }
+  .independent-flow .distribution-track { margin-top: 8px; margin-bottom: 8px; }
+  .independent-flow .recipient-row { padding-top: 12px; padding-bottom: 16px; }
+  .independent-flow .mandate .panel-head { padding-top: 16px; }
+  .independent-flow .mandate .panel-body { padding-top: 16px; padding-bottom: 18px; }
+  .independent-flow .terms > div { padding-top: 3px; padding-bottom: 3px; }
+  .independent-flow .terms .long { padding-top: 8px; margin-top: 5px; }
+  .independent-flow .gas-scope { margin-top: 8px; }
+  .independent-flow .mandate-actions { padding-top: 12px; }
+  .independent-flow .action-caption { margin-top: 7px; }
+  .independent-flow .mandate-id { margin-top: 8px; }
+  .independent-flow .ledger .panel-head, .independent-flow .budget .panel-head { padding-top: 16px; }
+  .independent-flow .ledger .panel-body, .independent-flow .budget .panel-body { padding-top: 16px; }
+}
 @media (min-width: 1101px) { .statement, .mandate { min-height: 353px; } }
 @media (max-width: 1100px) {
   .shell { width: calc(100% - 48px); }
@@ -182,6 +227,10 @@ textarea { display: block; width: 100%; min-height: 164px; resize: vertical; pad
   .topbar { height: 60px; }
   .brand { font-size: 20px; gap: 8px; }
   .network { font-size: 11px; }
+  .route-nav { gap: 20px; }
+  .independence-overview { padding: 16px 20px; }
+  .independence-heading { align-items: flex-start; }
+  .independence-heading > span { text-align: right; max-width: 230px; }
   .titlebar { padding: 22px 0 20px; align-items: flex-start; }
   .titlebar p { max-width: 35ch; font-size: 13px; }
   h1 { font-size: 26px; }
@@ -207,6 +256,15 @@ textarea { display: block; width: 100%; min-height: 164px; resize: vertical; pad
   .brand { font-size: 19px; }
   .brand svg { width: 22px; }
   .network { max-width: 98px; text-align: right; }
+  .route-nav a { min-height: 36px; }
+  .independence-overview { padding: 16px 18px; }
+  .independence-heading { display: block; }
+  .independence-heading > span { display: block; text-align: left; margin-top: 5px; max-width: none; }
+  .role-columns { grid-template-columns: 1fr; gap: 12px; }
+  .role-columns > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; }
+  .role-columns .address { text-align: right; margin-top: 0; }
+  .role-caption { grid-column: 1 / -1; }
+  .independence-checks { grid-template-columns: 1fr; }
   .titlebar { gap: 12px; }
   .titlebar p { max-width: 25ch; }
   .freshness { max-width: 112px; text-align: right; }

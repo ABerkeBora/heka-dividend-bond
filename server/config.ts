@@ -1,6 +1,10 @@
-import 'dotenv/config';
+import dotenv from 'dotenv';
 import { deriveRequestHash } from './vendor/airnode-v2.ts';
 import type { Address } from 'viem';
+export const runtimeScope=process.env.DIVIDEND_SCOPE==='v2'?'v2':'v1';
+export const runtimeRole=runtimeScope==='v2'?'collector':'deployer';
+// The restricted collector process must never load the parent .env containing issuer wallet paths.
+if(runtimeScope==='v1')dotenv.config({quiet:true});
 export const sourceUrl = 'https://airnode-eodhd.fly.dev/';
 export const signer: Address = '0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe';
 export const payee: Address = '0x1505FD562AC2Fb4307B85BC6c672FfeafB4d57A7';

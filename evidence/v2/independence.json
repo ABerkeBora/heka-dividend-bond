@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-31T03:35:53.585Z",
+  "issuer": "0x1e3bD1fD6e463bc410E99298d20274dbE252d6E0",
+  "collector": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+  "payer": "0x4d299e20b77a197950ce862b311ab34b4237fbec",
+  "claimFrom": "0x4d299e20b77a197950ce862b311ab34b4237fbec",
+  "issuerNonceBefore": 15,
+  "issuerNonceAfter": 15,
+  "collectorNonceBefore": 0,
+  "collectorNonceAfter": 1,
+  "issuerUnchanged": true,
+  "collectorSecretOnly": true,
+  "issuerReadDenied": true,
+  "runtimeRestricted": true,
+  "payerMatchesCollector": true,
+  "claimFromMatchesCollector": true,
+  "setupComplete": true,
+  "paymentTransaction": "0x84a9bd85caec8f0d30974545c56c4633ec1ffe80deef8e34f8928829dabce7b3",
+  "claimTransaction": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+  "node": "v24.21.0",
+  "issuerReadErrorCode": "ERR_ACCESS_DENIED",
+  "nativeTypeScript": true
+}

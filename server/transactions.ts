@@ -1,8 +1,8 @@
 import {keccak256,type Hex} from 'viem';
 import {read,write,safeError} from './store.ts';
 import {wallet,publicClient} from './chain.ts';
-export async function durableTransaction(id:string,tx:any,role:'deployer'|'buyer'|'counterparty'='deployer',maxL2Cost?:bigint){
- const file=`.local/transactions/${id}.json`;let job=read(file);
+export async function durableTransaction(id:string,tx:any,role:'deployer'|'buyer'|'counterparty'|'collector'='deployer',maxL2Cost?:bigint,namespace?:'v2'){
+ const file=namespace==='v2'?`.local/v2/transactions/${id}.json`:`.local/transactions/${id}.json`;let job=read(file);
  if(!job){
   if(await publicClient.getChainId()!==84532)throw new Error('RPC must be Base Sepolia');
   const client=wallet(role);const fees=await publicClient.estimateFeesPerGas();

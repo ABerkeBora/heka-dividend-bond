@@ -1,0 +1,98 @@
+{
+  "version": "V2",
+  "checkedAt": "2026-10-31T03:33:42.112Z",
+  "network": {
+    "chainId": 84532,
+    "name": "Base Sepolia"
+  },
+  "contractAddress": "0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+  "tokenAddress": "0xc61371f8c5508cbd9862b76173eac5e6ef479478",
+  "method": "claimFor via read-only eth_call simulation",
+  "broadcastTransactions": false,
+  "paidApiCalls": 0,
+  "blockNumber": "52478762",
+  "blockTimestamp": "1793417621",
+  "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+  "expectedSigner": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+  "wrongRequestIndependentlyAuthenticated": {
+    "requestHash": "0xb08ec52b9f16e8437ffc5062549af938a315f7746fba673ff9643ebfe2d2ff8d",
+    "signer": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+    "operation": "searchInstruments"
+  },
+  "explanation": "All four rejection cases simulate the actual claim calldata while the separate V2 obligation is Active.",
+  "validCase": {
+    "status": "PENDING",
+    "method": "validateResponse eth_call",
+    "detail": "No fresh V2 collection proof yet; this script does not purchase data. Actual payout is separate evidence.",
+    "proofTimestamp": "1793414484"
+  },
+  "cases": [
+    {
+      "name": "edited-value",
+      "status": "PASS",
+      "expected": "NotSignedByAirnode",
+      "actual": {
+        "errorName": "NotSignedByAirnode",
+        "args": [
+          "0xa37C6d9b48697350D1e2DeF8B07dD3543f5d00e8"
+        ],
+        "message": "The contract function \"claimFor\" reverted."
+      },
+      "proofTimestamp": "1793414484"
+    },
+    {
+      "name": "real-stale-response",
+      "status": "PASS",
+      "expected": "ResponseTooOld",
+      "actual": {
+        "errorName": "ResponseTooOld",
+        "args": [
+          "1793414484"
+        ],
+        "message": "The contract function \"claimFor\" reverted."
+      },
+      "proofTimestamp": "1793414484"
+    },
+    {
+      "name": "different-real-request",
+      "status": "PASS",
+      "expected": "NotSignedByAirnode",
+      "actual": {
+        "errorName": "NotSignedByAirnode",
+        "args": [
+          "0x964793d49B0E43C1C715264f1D8876A9e429AF75"
+        ],
+        "message": "The contract function \"claimFor\" reverted."
+      },
+      "proofTimestamp": "1793414508"
+    },
+    {
+      "name": "local-wrong-signer",
+      "status": "PASS",
+      "expected": "NotSignedByAirnode",
+      "actual": {
+        "errorName": "NotSignedByAirnode",
+        "args": [
+          "0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf"
+        ],
+        "message": "The contract function \"claimFor\" reverted."
+      },
+      "proofTimestamp": "1793417621"
+    }
+  ],
+  "before": {
+    "state": 1,
+    "claimedAmount": "0",
+    "reserveAtoms": "50000000",
+    "beneficiaryAtoms": "0"
+  },
+  "after": {
+    "state": 1,
+    "claimedAmount": "0",
+    "reserveAtoms": "50000000",
+    "beneficiaryAtoms": "0"
+  },
+  "protectedStateUnchanged": true,
+  "tamperStatus": "PASS",
+  "caveat": "These are live deployed-contract eth_call checks, not broadcast rejection transactions. Static calls cannot mutate state; actual balances and consumed state are also sampled before and after."
+}

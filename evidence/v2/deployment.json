@@ -1,0 +1,46 @@
+{
+  "id": "independent-01",
+  "createdAt": 1793417582,
+  "scope": "v2",
+  "issuer": "0x1e3bD1fD6e463bc410E99298d20274dbE252d6E0",
+  "collector": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+  "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+  "tokenAddress": "0xc61371f8c5508cbd9862b76173eac5e6ef479478",
+  "tokenTx": "0xd1731eb51f7a10428eed19aee8500133ba2080617df0657c46dc6fde0e0995d6",
+  "terms": {
+    "asset": "0xc61371f8c5508cbd9862b76173eac5e6ef479478",
+    "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+    "airnode": "0xDaF9D3493e556e9f25b34A3c366795F81e90c6fe",
+    "requestHash": "0x126a0237bcd5538d8833c4ed4605d2e5be13b37157c3de50a32ed8e0b43ec299",
+    "ticker": "AAPL.US",
+    "eventDate": "1754870400",
+    "paymentDate": "1755129600",
+    "quantityE18": "100000000000000000000",
+    "payoutCap": "50000000",
+    "earliestSettlement": 1793417582,
+    "claimDeadline": 1793503982,
+    "voidGrace": 3600
+  },
+  "contractAddress": "0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+  "txHash": "0xab18d365d13fbd0438aeee2199dc4ddbadf7084c711a466a9e5002a82042661e",
+  "approvalTx": "0x43455c1dc7b61de501e0a86b2ebe84cf24c57695408f6e48384d316ceeea4534",
+  "fundingTx": "0xf73c3815cfe411207d72067379fe878a82f5db5c984d69844550db6d5e367004",
+  "collectorAUSDBefore": "0",
+  "collectorFundingTx": "0x112592c42f5658ee4d92ec1ccbe15c8aaecbbc035e88e475e29ba20a9d695380",
+  "collectorFundingAtoms": "50000",
+  "setupComplete": true,
+  "setupCompletedAt": 1793417594,
+  "issuerNonceAtHandoff": 15,
+  "collectorNonceAtHandoff": 0,
+  "collectorGasBalanceAtHandoff": "1000000000000000",
+  "network": {
+    "chainId": 84532,
+    "name": "Base Sepolia",
+    "explorer": "https://sepolia.basescan.org"
+  },
+  "discovery": {
+    "requestHash": "0xc8621f8b51ab63d74bd9aa8bd79c64c6a184faee7fa0c9651412f453b4973b11",
+    "source": "Shared immutable historical raw-event discovery snapshot; used only to pin setup terms, never a V2 purchase/claim receipt",
+    "recordCount": 1
+  }
+}

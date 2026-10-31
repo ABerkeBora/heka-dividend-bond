@@ -1,13 +1,12 @@
 import {x402Client} from '@x402/core/client';
 import {decodePaymentRequiredHeader,decodePaymentResponseHeader,encodePaymentSignatureHeader} from '@x402/core/http';
 import {ExactEvmScheme} from '@x402/evm';
-import {privateKeyToAccount} from 'viem/accounts';
 import {decodeEventLog,isAddressEqual} from 'viem';
 import fs from 'node:fs';
 import path from 'node:path';
 import {policy,sourceUrl,request,requestHash,signer,discoveryRequest,discoveryRequestHash,discoveryPurpose} from './config.ts';
-import {roles,publicClient,tokenAbi} from './chain.ts';
-import {read,write,now,root} from './store.ts';
+import {payerAccount,publicClient,tokenAbi} from './chain.ts';
+import {read,write,now,scopedPath} from './store.ts';
 import {withLock} from './lock.ts';
 import {verifySignedResponse,type SignedResponse} from './vendor/airnode-v2.ts';
 
@@ -37,7 +36,7 @@ export function guardRequirement(r:any,mandate:any){return guardOffer(r,mandate,
 /** Every signed authorization reserves its full amount even if its outcome is unknown or rejected. */
 export function committedUsage(mandateId:string){
  if(!safeId(mandateId))throw new Error('Invalid mandate identity');
- const directory=path.join(root,'.local','payments');let reserved=0n;let actions=0;
+ const directory=scopedPath('.local/payments');let reserved=0n;let actions=0;
  if(!fs.existsSync(directory))return {reservedAtoms:'0',actions:0};
  for(const name of fs.readdirSync(directory).filter(x=>x.endsWith('.json'))){
   const p=read(`.local/payments/${name}`);
@@ -81,7 +80,7 @@ async function buyDataUnlocked(intentId:string,mandate:any,recipe:'product'|'dis
  if(requirements.length!==1)throw new Error('No single approved x402 offer within mandate');
  const amount=guardOffer(requirements[0],mandate,validate);
  if(await publicClient.getChainId()!==84532)throw new Error('RPC must be Base Sepolia');
- const payer=privateKeyToAccount(roles().deployer.privateKey);
+ const payer=payerAccount();
  const client=new x402Client().register(policy.network as any,new ExactEvmScheme(payer)).setSpendControls({allowedAssets:[{network:policy.network as any,asset:policy.asset,maxAmountPerPayment:mandate.perCallCapAtoms}],maxAmountPerPayment:'$0.01'});
  const payload=await client.createPaymentPayload({...required,accepts:requirements});
  const authorization=(payload.payload as any).authorization;

@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-31T03:36:45.021Z",
+  "scope": "v2",
+  "mandateId": "independent-01-0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+  "cases": [
+    {
+      "name": "over-budget",
+      "validatorDecision": "REJECT",
+      "message": "Data budget exceeded",
+      "broadcastTransactions": false
+    },
+    {
+      "name": "wrong-recipient",
+      "validatorDecision": "REJECT",
+      "message": "Unapproved payment destination, asset, network or scheme",
+      "broadcastTransactions": false
+    },
+    {
+      "name": "expired",
+      "validatorDecision": "REJECT",
+      "message": "Mandate expired or invalid expiry",
+      "broadcastTransactions": false
+    }
+  ],
+  "broadcastTransactions": false,
+  "noPaymentAuthorizationCreated": true,
+  "status": "PASS",
+  "runtimeRestricted": true,
+  "issuerReadDenied": true
+}

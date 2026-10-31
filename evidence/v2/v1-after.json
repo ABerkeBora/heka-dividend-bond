@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-31T03:37:44.609Z",
+  "blockNumber": "52479976",
+  "blockTimestamp": "1793417864",
+  "contractAddress": "0x4b6a7feb8f0e9bb1ba51ad7921f352e0a4ee6e5b",
+  "tokenAddress": "0x1c94037d2c84879ae78e66d29a9d5e03856440ae",
+  "chain": {
+    "state": 2,
+    "claimedAmount": "26000000",
+    "reserveAtoms": "0",
+    "beneficiaryAtoms": "26000000"
+  }
+}

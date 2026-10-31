@@ -1,0 +1,111 @@
+{
+  "checkedAt": "2026-10-31T03:36:48.910Z",
+  "scope": "v2",
+  "status": "PASS",
+  "setupCompletedAt": 1793417594,
+  "issuer": "0x1e3bD1fD6e463bc410E99298d20274dbE252d6E0",
+  "collector": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+  "beneficiary": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+  "contractAddress": "0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+  "dataPayment": {
+    "hash": "0x84a9bd85caec8f0d30974545c56c4633ec1ffe80deef8e34f8928829dabce7b3",
+    "payer": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+    "feeAtoms": "5000",
+    "payee": "0x1505FD562AC2Fb4307B85BC6c672FfeafB4d57A7",
+    "authorization": {
+      "from": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+      "to": "0x1505FD562AC2Fb4307B85BC6c672FfeafB4d57A7",
+      "value": "5000",
+      "nonce": "0xe3a25e859cb9d2bf6880d23268353725eff2d84fc240d313610d27d759b22d59",
+      "validAfter": "0",
+      "validBefore": "1793418049"
+    },
+    "receiptStatus": "success",
+    "facilitatorPaysSettlementGas": true
+  },
+  "claim": {
+    "hash": "0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+    "from": "0x4d299e20b77a197950ce862b311ab34b4237fbec",
+    "to": "0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+    "nonce": 0,
+    "receiptStatus": "success",
+    "payoutAtoms": "26000000",
+    "gasSpentWei": "1690122001103"
+  },
+  "checks": {
+    "payerIsCollector": true,
+    "authorizationExactValue": true,
+    "authorizationExactPayee": true,
+    "authorizationNonceConsumed": true,
+    "exactDataTransfer": true,
+    "claimFromCollector": true,
+    "claimTargetsV2": true,
+    "claimNonceStartsAtHandoff": true,
+    "claimEventSubmitterIsCollector": true,
+    "immutableBeneficiaryPaid": true,
+    "issuerDidNotAct": true,
+    "issuerKeyReadDenied": true,
+    "onlyCollectorKeyPresent": true,
+    "noSecondChargeOrPayout": true
+  },
+  "blocked": {
+    "checkedAt": "2026-10-31T03:36:45.021Z",
+    "scope": "v2",
+    "mandateId": "independent-01-0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba",
+    "cases": [
+      {
+        "name": "over-budget",
+        "validatorDecision": "REJECT",
+        "message": "Data budget exceeded",
+        "broadcastTransactions": false
+      },
+      {
+        "name": "wrong-recipient",
+        "validatorDecision": "REJECT",
+        "message": "Unapproved payment destination, asset, network or scheme",
+        "broadcastTransactions": false
+      },
+      {
+        "name": "expired",
+        "validatorDecision": "REJECT",
+        "message": "Mandate expired or invalid expiry",
+        "broadcastTransactions": false
+      }
+    ],
+    "broadcastTransactions": false,
+    "noPaymentAuthorizationCreated": true,
+    "status": "PASS",
+    "runtimeRestricted": true,
+    "issuerReadDenied": true
+  },
+  "before": {
+    "issuerNonce": 15,
+    "collectorNonce": 1,
+    "collectorAUSD": "45000",
+    "collectorETH": "998309877998897",
+    "collectorPayout": "26000000",
+    "state": "2",
+    "paymentIntents": [
+      "independent-01-0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba-data-01.json"
+    ]
+  },
+  "after": {
+    "issuerNonce": 15,
+    "collectorNonce": 1,
+    "collectorAUSD": "45000",
+    "collectorETH": "998309877998897",
+    "collectorPayout": "26000000",
+    "state": "2",
+    "paymentIntents": [
+      "independent-01-0x020c8bc7c9d4e3fdde1af6d9ad31a284850289ba-data-01.json"
+    ]
+  },
+  "restart": {
+    "freshRestrictedProcess": "Collected",
+    "recoveryProcess": "Collected",
+    "createdNewMandate": false,
+    "submittedNewPayment": false
+  },
+  "isolationEvidence": "evidence/v2/collection-runtime.json",
+  "limits": "API caps application-level; hard L2 transaction bound with separately estimated Base L1 fee. Node permissions protect trusted-code filesystem access, not hostile same-user code."
+}

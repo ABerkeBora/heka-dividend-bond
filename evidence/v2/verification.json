@@ -1,0 +1,53 @@
+{
+  "checkedAtUtc": "2026-10-31T03:46:41.403Z",
+  "scope": "v2",
+  "status": "PASS",
+  "typecheck": "PASS",
+  "serverTests": {
+    "passed": 71,
+    "failed": 0,
+    "v1": 64,
+    "v2": 7
+  },
+  "contractTests": {
+    "passed": 36,
+    "failed": 0,
+    "fuzzRuns": 256
+  },
+  "productionBuild": "PASS",
+  "dependencyAudit": {
+    "vulnerabilities": 0
+  },
+  "browser": {
+    "widths": [
+      1440,
+      768,
+      390
+    ],
+    "horizontalOverflow": false,
+    "rawProofAcceptRejectRecovery": "PASS",
+    "directRouteComparison": "PASS",
+    "evidence": "evidence/v2/browser-walkthrough.json"
+  },
+  "v1Regression": {
+    "publicEvidenceFiles": 32,
+    "allHashesEqual": true,
+    "oldReceiptsAndState": "PASS",
+    "newDataFeeTransfers": 0
+  },
+  "independence": {
+    "issuerNonce": [
+      15,
+      15
+    ],
+    "collectorNonce": [
+      0,
+      1
+    ],
+    "issuerSecretRead": "ERR_ACCESS_DENIED",
+    "payerAndClaimFrom": "collector",
+    "payoutAtoms": "26000000",
+    "dataFeeAtoms": "5000"
+  },
+  "rulesRecheck": "2026-10-31 04:45 Europe/Berlin"
+}

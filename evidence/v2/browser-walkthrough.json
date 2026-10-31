@@ -1,0 +1,21 @@
+{
+  "v1": {
+    "amount": "26.00 tdUSD",
+    "receipt": "https://sepolia.basescan.org/tx/0xf4419dba4bdd1f320074257d4f618bf7120136ab563c251c417b4218edc7acd3",
+    "status": "Claimed",
+    "title": "Dividend collection"
+  },
+  "v2": {
+    "amount": "26.00 tdUSD",
+    "receipt": "https://sepolia.basescan.org/tx/0x9dc93dca56d5c3b5418d9d31f6bc613abebc487897f3a2ce49419c296c6ca4d4",
+    "roleSummary": "Collection confirmed · Issuer setup complete",
+    "status": "Claimed",
+    "title": "Independent collection"
+  },
+  "directNavigation": true,
+  "initialMandateViaBrowser": true,
+  "validProofAccepted": true,
+  "editedProofRejected": true,
+  "restoredOriginalProofAccepted": true,
+  "newPaymentsDuringNavigation": 0
+}

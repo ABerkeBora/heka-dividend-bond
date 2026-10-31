@@ -18,7 +18,15 @@
     "recover": "tsx scripts/recover.ts",
     "tamper:live": "tsx scripts/tamper-live.ts",
     "acceptance": "tsx scripts/acceptance.ts",
-    "submit-response": "tsx scripts/submit-response.ts"
+    "submit-response": "tsx scripts/submit-response.ts",
+    "v2:setup": "tsx scripts/v2-setup.ts",
+    "v2:probe": "tsx scripts/v2-cli.ts probe",
+    "v2:collect": "tsx scripts/v2-cli.ts collect",
+    "v2:state": "tsx scripts/v2-cli.ts state",
+    "v2:recover": "tsx scripts/v2-cli.ts recover",
+    "v2:tamper": "tsx scripts/v2-tamper.ts",
+    "v2:regression": "tsx scripts/v2-regression.ts",
+    "v2:acceptance": "tsx scripts/v2-acceptance.ts"
   },
   "dependencies": {
     "@x402/core": "2.29.0",

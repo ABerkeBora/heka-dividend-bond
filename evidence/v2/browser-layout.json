@@ -1,0 +1,41 @@
+[
+  {
+    "amount": "26.00 tdUSD",
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "costDocumentTop": 820.984375,
+    "documentWidth": 1440,
+    "h1Size": "30px",
+    "horizontalOverflow": false,
+    "ledgerDocumentTop": 820.984375,
+    "primaryAction": "Run reconciliation",
+    "primaryActionDocumentTop": 644.4921875,
+    "smallText": [],
+    "width": 1440
+  },
+  {
+    "amount": "26.00 tdUSD",
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "costDocumentTop": 1969.578125,
+    "documentWidth": 768,
+    "h1Size": "26px",
+    "horizontalOverflow": false,
+    "ledgerDocumentTop": 1540.5859375,
+    "primaryAction": "Run reconciliation",
+    "primaryActionDocumentTop": 1398.5859375,
+    "smallText": [],
+    "width": 768
+  },
+  {
+    "amount": "26.00 tdUSD",
+    "bodyFont": "Arial, Helvetica, sans-serif",
+    "costDocumentTop": 2242.1640625,
+    "documentWidth": 390,
+    "h1Size": "26px",
+    "horizontalOverflow": false,
+    "ledgerDocumentTop": 1760.9765625,
+    "primaryAction": "Run reconciliation",
+    "primaryActionDocumentTop": 1600.9765625,
+    "smallText": [],
+    "width": 390
+  }
+]

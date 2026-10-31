@@ -10,22 +10,28 @@ type AppState = {
   journal?: (Json & { steps?: Step[] }) | null;
   balances?: Json;
   evidence?: Json;
+  independence?: Json;
   updatedAt?: string | number;
   error?: string;
 };
 
+const isIndependent = window.location.pathname === '/next' || window.location.pathname === '/next/';
+const apiPrefix = isIndependent ? '/api/v2' : '/api';
+if (isIndependent) document.title = 'Dividend Bond — Independent collector';
 const app = document.querySelector<HTMLDivElement>('#app')!;
 app.innerHTML = `
   <header class="shell topbar">
     <div class="brand"><svg viewBox="0 0 28 34" fill="none" aria-hidden="true"><path d="M6 3h5c9 0 13 6 13 14s-4 14-13 14H6V3Z" stroke="currentColor" stroke-width="1.6"/><path d="M2 12h13M2 22h13" stroke="currentColor" stroke-width="1.6"/></svg><span>Dividend Bond</span></div>
     <span class="network" id="network">Connecting to chain</span>
   </header>
-  <main class="shell" data-ui>
+  <nav class="shell route-nav" aria-label="Collection flows"><a href="/"${!isIndependent ? ' aria-current="page"' : ''}>V1 collection</a><a href="/next"${isIndependent ? ' aria-current="page"' : ''}>Independent collector</a></nav>
+  <main class="shell${isIndependent ? ' independent-flow' : ''}" data-ui>
     <div class="titlebar">
-      <div><h1>Dividend collection</h1><p id="finding">A funded obligation. One bounded collection mandate.</p></div>
+      <div><h1>${isIndependent ? 'Independent collection' : 'Dividend collection'}</h1><p id="finding">A funded obligation. One bounded collection mandate.</p></div>
       <div class="freshness"><span id="freshness">Loading account</span><button class="text-button" id="refresh">Refresh status</button><button class="mobile-review" id="review-mandate">Review mandate</button></div>
     </div>
     <div class="error" id="connection-error" role="alert" hidden></div>
+    ${isIndependent ? '<section class="panel independence-overview" aria-labelledby="independence-heading"><div class="independence-heading"><h2 id="independence-heading">Issuer setup & collector</h2><span id="independence-summary" class="small muted">Awaiting role evidence</span></div><div class="role-columns" id="role-columns"></div></section>' : ''}
     <div class="workspace">
       <section class="panel statement" aria-labelledby="obligation-heading">
         <div class="statement-head"><div><h2 class="ticker" id="obligation-heading">Dividend obligation</h2><p class="statement-kind">Historical event · Test synthetic position</p></div><span class="status" id="agreement-status">Loading</span></div>
@@ -37,7 +43,7 @@ app.innerHTML = `
         <div class="recipient-row"><div><small class="muted">Fixed beneficiary</small><div id="beneficiary" class="address">—</div></div><div class="recipient"><small class="muted">Payment goes directly here</small><div id="claim-link" class="small">No collection submitted</div></div></div>
       </section>
       <section class="panel mandate" aria-labelledby="mandate-heading">
-        <div class="panel-head"><h2 id="mandate-heading">Collection mandate</h2><span class="status" id="mandate-status">Not authorized</span></div>
+        <div class="panel-head"><h2 id="mandate-heading">${isIndependent ? 'Collector mandate' : 'Collection mandate'}</h2><span class="status" id="mandate-status">Not authorized</span></div>
         <div class="panel-body"><dl class="terms" id="mandate-terms"></dl><p class="gas-scope">L2 transaction cost is capped. The additional L1 data fee is estimated separately.</p><div class="mandate-actions"><button class="primary" id="authorize" disabled>Authorize collection</button><p class="action-caption" id="action-caption">Loading the funded obligation and its fixed terms.</p><p class="mandate-id" id="mandate-id" hidden></p></div></div>
       </section>
       <section class="panel ledger" aria-labelledby="ledger-heading">
@@ -55,6 +61,7 @@ app.innerHTML = `
         <div><h2>Fixed source & on-chain evidence</h2><dl class="source-list" id="source-list"></dl><p class="proof-note">An Airnode signature authenticates the exact response. EODHD remains the source of the dividend record; it does not prove external share ownership or backing.</p></div>
       </div></div></details>
     </section>
+    ${isIndependent ? '<section class="independence-detail" aria-label="Collector independence evidence"><details><summary>Collector independence evidence</summary><div class="detail-content"><p class="verification-intro">The issuer funds the obligation first. This runtime uses the collector wallet to buy data and submit the claim.</p><dl class="independence-checks" id="independence-checks"></dl><p class="proof-note">The checks describe the recorded collector process and this collection window. Application guards bound API spending; the deployed contract fixes the beneficiary and enforces the proof and one-claim rule.</p></div></details></section>' : ''}
     <footer class="footer"><p>Test assets on Base Sepolia. Quantity and beneficiary are fixed by the funded contract. A paid data request may incur a fee even when a later proof is rejected.</p><a href="https://github.com/ABerkeBora/heka-dividend-bond" target="_blank" rel="noreferrer">Source & setup ↗</a></footer>
   </main>`;
 
@@ -134,6 +141,7 @@ function render() {
   const policy = state?.policy || {};
   const journal = state?.journal;
   const deployment = state?.deployment;
+  const independence = state?.independence || {};
   const claimed = Boolean(agreement.claimed || /claimed/i.test(agreement.status || ''));
   const symbol = agreement.payoutSymbol || 'tdUSD';
   const decimals = Number(agreement.payoutDecimals ?? 6);
@@ -185,7 +193,7 @@ function render() {
   setStatus('mandate-status', journal ? statusLabel(journal.status || 'Authorized') : 'Not authorized');
   const action = el<HTMLButtonElement>('authorize');
   const isRunning = pendingAction || /running|purchasing|verifying|submitting|pending/i.test(journal?.status || '');
-  action.textContent = pendingAction ? 'Collection in progress…' : claimed ? 'Run reconciliation' : journal ? 'Resume collection' : 'Authorize collection';
+  action.textContent = pendingAction ? 'Collection in progress…' : claimed ? 'Run reconciliation' : journal ? 'Resume collection' : isIndependent ? 'Authorize independent collection' : 'Authorize collection';
   action.disabled = pendingAction || !deployment?.contractAddress || !agreement.beneficiary;
   el<HTMLButtonElement>('review-mandate').textContent = claimed ? 'Review collection' : 'Review mandate';
   el('action-caption').textContent = actionError || (claimed
@@ -196,7 +204,37 @@ function render() {
   el('mandate-id').hidden = !journal?.mandateId;
   el('mandate-id').textContent = journal?.mandateId ? `Mandate ${short(journal.mandateId, 13, 6)}` : '';
   el('ledger-mode').textContent = journal ? 'Persistent intent' : 'No mandate yet';
-  el('finding').textContent = claimed ? 'The dividend reached the fixed beneficiary.' : journal?.error ? 'Collection paused. Review the agent’s latest decision.' : journal ? 'Your agent is collecting within the approved terms.' : 'Collect a funded dividend without relying on the issuer to act.';
+  el('finding').textContent = isIndependent
+    ? claimed ? independence.payerMatchesCollector === true && independence.claimFromMatchesCollector === true ? 'The collector paid its own costs and triggered payment to the fixed beneficiary.' : 'Payment reached the beneficiary. Collector payment evidence is pending.'
+      : journal?.error ? 'Independent collection paused. Review the collector’s latest decision.'
+      : journal ? 'Issuer reserve funded. The collector buys proof and claims for the fixed beneficiary.'
+      : deployment?.contractAddress ? 'Issuer reserve funded. The collector pays for data and gas to collect for the beneficiary.'
+      : 'The issuer funds the reserve before a separate collector buys proof and claims.'
+    : claimed ? 'The dividend reached the fixed beneficiary.' : journal?.error ? 'Collection paused. Review the agent’s latest decision.' : journal ? 'Your agent is collecting within the approved terms.' : 'Collect a funded dividend without relying on the issuer to act.';
+  if (isIndependent) {
+    const collector = independence.collector;
+    const payer = independence.payer || (independence.payerMatchesCollector === true ? collector : null);
+    const claimFrom = independence.claimFrom || (independence.claimFromMatchesCollector === true ? collector : null);
+    const funded = /active|claimed/i.test(agreement.status || '') && Boolean(deployment?.contractAddress);
+    const isolated = independence.collectorSecretOnly === true && independence.issuerReadDenied === true && independence.runtimeRestricted === true;
+    el('independence-summary').textContent = claimed && independence.payerMatchesCollector === true && independence.claimFromMatchesCollector === true ? 'Collection confirmed · Issuer setup complete' : !funded ? 'Issuer setup pending' : isolated ? 'Issuer setup complete · Collector ready' : 'Issuer setup complete · Collector checks pending';
+    el('role-columns').innerHTML = `<div><span class="small muted">Issuer funds reserve</span><p class="address">${explorerLink('address', independence.issuer)}</p><p class="role-caption">${funded ? 'Reserve funded before collection' : 'Awaiting funded obligation'}</p></div><div><span class="small muted">Collector pays data & gas</span><p class="address">${explorerLink('address', collector)}</p><p class="role-caption">Data payer: ${payer ? explorerLink('address', payer) : '—'}</p></div><div><span class="small muted">Claim transaction sender</span><p class="address">${explorerLink('address', claimFrom)}</p><p class="role-caption">${independence.claimFromMatchesCollector === true ? 'Confirmed collector sender' : claimed ? 'Sender evidence pending' : 'No claim submitted yet'}</p></div>`;
+    const check = (value: unknown, yes: string, no: string) => value === true ? `<span class="check-result positive">${yes}</span>` : value === false ? `<span class="check-result negative">${no}</span>` : '<span class="muted">—</span>';
+    el('independence-checks').innerHTML = [
+      term('Issuer', `<span class="address">${explorerLink('address', independence.issuer)}</span>`),
+      term('Collector', `<span class="address">${explorerLink('address', collector)}</span>`),
+      term('Actual data payer', `<span class="address">${explorerLink('address', payer)}</span>`),
+      term('Actual claim sender', `<span class="address">${explorerLink('address', claimFrom)}</span>`),
+      term('Issuer nonce before / after', `${escapeHtml(independence.issuerNonceBefore ?? '—')} / ${escapeHtml(independence.issuerNonceAfter ?? '—')}`),
+      term('Issuer nonce unchanged', check(independence.issuerUnchanged, 'Confirmed', 'Changed')),
+      term('Only collector wallet loaded', check(independence.collectorSecretOnly, 'Confirmed', 'Not confirmed')),
+      term('Issuer key read denied', check(independence.issuerReadDenied, 'Confirmed', 'Not denied')),
+      term('Restricted runtime', check(independence.runtimeRestricted, 'Confirmed', 'Not restricted')),
+      term('Data payer is collector', check(independence.payerMatchesCollector, 'Confirmed', 'Mismatch')),
+      term('Claim sender is collector', check(independence.claimFromMatchesCollector, 'Confirmed', 'Mismatch')),
+    ].join('');
+    if (!journal && !claimed && funded) el('action-caption').textContent = actionError || `Authorize once. The collector uses its own capped aUSD and gas budget. The payout goes directly to the fixed beneficiary.${isolated ? '' : ' Collector isolation evidence is pending.'}`;
+  }
 
   const steps = journal?.steps || [];
   el('ledger-list').innerHTML = canonicalSteps.map((name, index) => {
@@ -248,7 +286,7 @@ async function refresh() {
   if (fetching) return;
   fetching = true;
   try {
-    const data = await request('/api/state');
+    const data = await request(`${apiPrefix}/state`);
     state = (data.state || data) as AppState;
     el('connection-error').hidden = true;
     render();
@@ -266,7 +304,7 @@ async function collect() {
   actionError = '';
   render();
   try {
-    const data = await request(state.journal || state.agreement?.claimed ? '/api/run' : '/api/authorize', {});
+    const data = await request(`${apiPrefix}/${state.journal || state.agreement?.claimed ? 'run' : 'authorize'}`, {});
     if (data.state) state = data.state;
     await refresh();
   } catch (error) {
@@ -274,7 +312,7 @@ async function collect() {
   } finally { pendingAction = false; render(); }
 }
 async function loadEvidence(): Promise<Json> {
-  evidenceCache = await request('/api/evidence');
+  evidenceCache = await request(`${apiPrefix}/evidence`);
   return evidenceCache;
 }
 async function downloadEvidence() {
@@ -283,7 +321,7 @@ async function downloadEvidence() {
     const href = URL.createObjectURL(new Blob([JSON.stringify(evidence, null, 2)], { type: 'application/json' }));
     const anchor = document.createElement('a');
     anchor.href = href;
-    anchor.download = 'dividend-bond-evidence.json';
+    anchor.download = isIndependent ? 'dividend-bond-independent-evidence.json' : 'dividend-bond-evidence.json';
     anchor.click();
     URL.revokeObjectURL(href);
   } catch (error) { showVerifyResult(false, error instanceof Error ? error.message : String(error)); }
@@ -309,7 +347,7 @@ el('verify-form').addEventListener('submit', async event => {
     const parsed = JSON.parse(el<HTMLTextAreaElement>('response-input').value);
     const response = parsed.response || parsed;
     if (!response.timestamp || typeof response.data !== 'string' || typeof response.signature !== 'string') throw new Error('Provide timestamp, the original data string and signature.');
-    const result = await request('/api/verify', { response });
+    const result = await request(`${apiPrefix}/verify`, { response });
     const valid = Boolean(result.valid ?? result.accepted ?? result.ok);
     const message = result.message || result.error || (valid ? `Response accepted by the deployed verifier${result.payoutAtoms !== undefined ? ` · ${units(result.payoutAtoms, 6)} tdUSD` : ''}. Read-only check; no funds moved.` : 'Response rejected. Protected funds and claim state are unchanged.');
     showVerifyResult(valid, message);

@@ -1,5 +1,13 @@
 # Dividend Bond
 
+## V2: independent collector
+
+Open [V1 at `/`](http://localhost:3103/) or [V2 at `/next`](http://localhost:3103/next). V2 uses a separate funded contract and a collector-only Node 24 process: the collector paid for its own EODHD response and sent the 26 tdUSD claim while the issuer nonce stayed unchanged. Its actual issuer-file read was denied. [V2 setup and live evidence](README_V2.md), [security boundary](SECURITY_V2.md) and [150-second presentation outline](PRESENTATION_V2.md) describe the exact limits.
+
+V1 is retained at [`v1-baseline`](https://github.com/ABerkeBora/heka-dividend-bond/tree/v1-baseline), commit `3a177521c49a32b07ccbc1be3985df8a86eab0c8`; V2 work is on `codex/next` in the same repository. The original V1 documentation follows.
+
+## V1: original application
+
 Collect one funded dividend obligation through an agent, with the payment amount authenticated by API3 on-chain.
 
 An issuer fixes a beneficiary, eligible test quantity, historical dividend event and payout cap, then locks the full reserve. The beneficiary authorizes one bounded collection mandate. The agent buys the exact EODHD response through x402, verifies it, and submits a permissionless claim. The contract sends funds only to the beneficiary fixed before funding; the issuer has no override that can approve a forged proof or redirect the payout.

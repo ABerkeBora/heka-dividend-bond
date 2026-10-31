@@ -1,6 +1,6 @@
 import {encodeFunctionData,toHex,parseEventLogs,formatUnits,parseUnits} from 'viem';
-import {policy,request,requestHash,signer} from './config.ts';
-import {artifact,publicClient,tokenAbi,roles} from './chain.ts';
+import {policy,request,requestHash,signer,runtimeRole,runtimeScope} from './config.ts';
+import {artifact,publicClient,tokenAbi,payerAccount} from './chain.ts';
 import {buyData,reconcilePayment,committedUsage} from './payment.ts';
 import {withLock} from './lock.ts';
 import {read,write,now,safeError} from './store.ts';
@@ -22,14 +22,14 @@ export async function chainState(){
  let observedDividend=BigInt(declaredDividendE18 as bigint);const preflight=read('evidence/preflight.json');
  if(observedDividend===0n&&preflight?.response){await verifySignedResponse(preflight.response,signer,requestHash);observedDividend=parseUnits(String(JSON.parse(preflight.response.data).declaredDividend),18);}
  const preview=BigInt(d.terms.quantityE18)*observedDividend/10n**30n;
- const t=d.terms;return {deployment:d,agreement:{id:d.id,ticker:t.ticker,eventDate:'2025-08-11',paymentDate:'2025-08-14',recordDate:'2025-08-11',quantityAtoms:'100',quantityDecimals:0,payoutCapAtoms:t.payoutCap,payoutDecimals:6,payoutSymbol:'tdUSD',beneficiary:t.beneficiary,issuer:preflight?.payer||null,status:['Awaiting funding','Active','Claimed','Void'][Number(state)],claimed:Number(state)===2,payoutAtoms:String(claimedAmount),declaredDividendAtoms:observedDividend>0n?String(observedDividend/1000000000000n):undefined,previewPayoutAtoms:observedDividend>0n?String(preview>BigInt(t.payoutCap)?BigInt(t.payoutCap):preview):undefined,reserveAtoms:String(reserve),claimDeadline:t.claimDeadline,voidGrace:t.voidGrace},balances:{beneficiaryAtoms:String(balance),reserveAtoms:String(reserve)}};
+ const t=d.terms;return {deployment:d,agreement:{id:d.id,ticker:t.ticker,eventDate:'2025-08-11',paymentDate:'2025-08-14',recordDate:'2025-08-11',quantityAtoms:'100',quantityDecimals:0,payoutCapAtoms:t.payoutCap,payoutDecimals:6,payoutSymbol:'tdUSD',beneficiary:t.beneficiary,issuer:d.issuer||preflight?.payer||null,status:['Awaiting funding','Active','Claimed','Void'][Number(state)],claimed:Number(state)===2,payoutAtoms:String(claimedAmount),declaredDividendAtoms:observedDividend>0n?String(observedDividend/1000000000000n):undefined,previewPayoutAtoms:observedDividend>0n?String(preview>BigInt(t.payoutCap)?BigInt(t.payoutCap):preview):undefined,reserveAtoms:String(reserve),claimDeadline:t.claimDeadline,voidGrace:t.voidGrace},balances:{beneficiaryAtoms:String(balance),reserveAtoms:String(reserve)}};
 }
 export async function getState(){const c=await chainState();const j=read(journalFile)||read('evidence/collection.json');if(j){const usage=committedUsage(j.mandateId);if(usage.actions>0){j.actions=usage.actions;j.dataSpentAtoms=usage.reservedAtoms;}}return {...c,network:{name:'Base Sepolia',chainId:84532,explorer:'https://sepolia.basescan.org'},policy,journal:j,evidence:{preflight:read('evidence/preflight.json'),tamper:read('evidence/tamper-live.json')},updatedAt:new Date().toISOString()};}
 export async function authorize(){return withLock('workflow',async()=>{
  const c=await chainState();if(!c.deployment||!c.agreement)throw new Error('No funded obligation is configured');if(c.agreement.claimed)throw new Error('Already collected; no new mandate or data purchase');
  if(c.agreement.status!=='Active')throw new Error('Obligation is not active');const old=read(journalFile);if(old)throw new Error('A mandate already exists; resume it without creating a new intent');
  const id=`${c.deployment.id}-${c.deployment.contractAddress.toLowerCase()}`;
- const m={...policy,mandateId:id,agreementId:c.agreement.id,contractAddress:c.deployment.contractAddress,beneficiary:c.agreement.beneficiary,payer:roles().deployer.address,createdAt:now(),expiresAt:now()+policy.expirySeconds,actions:0,reservedAtoms:'0'};
+ const m={...policy,mandateId:id,scope:runtimeScope,executorRole:runtimeRole,agreementId:c.agreement.id,contractAddress:c.deployment.contractAddress,beneficiary:c.agreement.beneficiary,payer:payerAccount().address,createdAt:now(),expiresAt:now()+policy.expirySeconds,actions:0,reservedAtoms:'0'};
  write(`.local/mandates/${id}.json`,m);const j={mandateId:id,status:'Authorized',createdAt:m.createdAt,expiresAt:m.expiresAt,dataSpentAtoms:'0',gasSpentWei:'0',actions:0,steps:[],mandate:m};save(j);return j;
  });}
 export async function verifyResponse(response:SignedResponse){const d=read('evidence/deployment.json');if(!d)throw new Error('Deploy an obligation first');await verifySignedResponse(response,signer,requestHash);const result=await publicClient.readContract({address:d.contractAddress,abi:artifact('DividendBond').abi,functionName:'validateResponse',args:[BigInt(response.timestamp),toHex(response.data),response.signature]}) as [bigint,bigint];return {valid:true,payoutAtoms:result[1].toString(),message:`Proof accepted: ${formatUnits(result[1],6)} tdUSD for the immutable beneficiary`};}
@@ -42,7 +42,7 @@ export async function runAgent(){return withLock('workflow',async()=>{
   if(c.agreement.claimed){
    const existing=read(`.local/transactions/${j.mandateId}-claim.json`);
    if(existing||j.claimTx){
-    const tx=existing?await durableTransaction(`${j.mandateId}-claim`,{},'deployer'):{hash:j.claimTx,receipt:await publicClient.getTransactionReceipt({hash:j.claimTx})};
+    const tx=existing?await durableTransaction(`${j.mandateId}-claim`,{},runtimeRole):{hash:j.claimTx,receipt:await publicClient.getTransactionReceipt({hash:j.claimTx})};
     j.claimTx=tx.hash;j.claimReceipt=tx.receipt;j.gasSpentWei=(BigInt(tx.receipt.gasUsed)*BigInt(tx.receipt.effectiveGasPrice)+BigInt(tx.receipt.l1Fee||0)).toString();
     const events=parseEventLogs({abi:artifact('DividendBond').abi,logs:tx.receipt.logs,eventName:'Claimed'}) as any[];
     const event=events.find(x=>x.args.beneficiary.toLowerCase()===m.beneficiary.toLowerCase());
@@ -64,7 +64,7 @@ export async function runAgent(){return withLock('workflow',async()=>{
   if(now()>m.expiresAt)throw new Error('Mandate expired before claim');
   const before=c.balances!.beneficiaryAtoms;j.beneficiaryBeforeAtoms=before;
   j.status='Submitting claim';step(j,'Claim sent','pending','Preparing a transaction to the approved contract and immutable beneficiary');
-  const tx=await durableTransaction(`${j.mandateId}-claim`,{to:d.contractAddress,data:encodeFunctionData({abi:artifact('DividendBond').abi,functionName:'claimFor',args:[BigInt(payment.response.timestamp),toHex(payment.response.data),payment.response.signature]})},'deployer',BigInt(m.gasBudgetWei)/2n);
+  const tx=await durableTransaction(`${j.mandateId}-claim`,{to:d.contractAddress,data:encodeFunctionData({abi:artifact('DividendBond').abi,functionName:'claimFor',args:[BigInt(payment.response.timestamp),toHex(payment.response.data),payment.response.signature]})},runtimeRole,BigInt(m.gasBudgetWei)/2n);
   j.claimTx=tx.hash;j.gasSpentWei=(BigInt(tx.receipt.gasUsed)*BigInt(tx.receipt.effectiveGasPrice)+BigInt(tx.receipt.l1Fee)).toString();j.claimReceipt=tx.receipt;
   step(j,'Claim sent','confirmed','Agent transaction confirmed',tx.hash);
   const after=await chainState();j.beneficiaryAfterAtoms=after.balances!.beneficiaryAtoms;j.receivedAtoms=(BigInt(j.beneficiaryAfterAtoms)-BigInt(before)).toString();

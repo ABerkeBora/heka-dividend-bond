@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-31T03:36:44.947Z",
+  "scope": "v2",
+  "command": "reject-check",
+  "node": "v24.21.0",
+  "nativeTypeScript": true,
+  "permissionEnabled": true,
+  "runtimeRestricted": true,
+  "collectorSecretOnly": true,
+  "collector": "0x4d299E20B77a197950cE862b311aB34B4237Fbec",
+  "collectorSchema": {
+    "available": true,
+    "valid": true,
+    "topLevelFields": [
+      "chainId",
+      "collector",
+      "project",
+      "scope",
+      "testOnly"
+    ],
+    "roleFields": [
+      "collector"
+    ],
+    "collectorFields": [
+      "address",
+      "privateKey"
+    ]
+  },
+  "issuerProbeConfigured": true,
+  "issuerReadDenied": true,
+  "issuerReadErrorCode": "ERR_ACCESS_DENIED",
+  "parentEnvReadDenied": true,
+  "v1JournalReadDenied": true,
+  "v1EvidenceReadDenied": true,
+  "childProcessAllowed": false,
+  "workerThreadsAllowed": false,
+  "nativeAddonsAllowed": false,
+  "inheritedIssuerWalletEnvironment": false,
+  "claim": "Node permission model is a filesystem seat belt for this trusted collector code; it is not a hostile-code sandbox",
+  "documentation": "https://nodejs.org/docs/latest-v24.x/api/permissions.html"
+}
